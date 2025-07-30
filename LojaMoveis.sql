@@ -1,7 +1,5 @@
 create database LojaMoveis;
-use LojaMoveis;-- =====================
--- TABELAS E DADOS BASE
--- =====================
+use LojaMoveis;
 
 CREATE TABLE Motorista (
     CodMot INT PRIMARY KEY,
