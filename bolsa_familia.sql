@@ -46,7 +46,7 @@ GROUP BY b.nome_beneficiario, b.nis_beneficiario, m.nome_municipio, m.uf;
 
 -- criar índices
 CREATE INDEX idx_bolsa_municipio ON bolsa_familia_pagamentos(codigo_municipio); -- encontra rapidamente os pagamentos para cada município
-CREATE INDEX idx_municipios_codigo ON municipios(codigo_municipio); -- acelera o acesso aos municípios filtrados
+CREATE INDEX idx_municipios_codigo ON municipios(codigo_municipio); acelera o join entre tabelas
 CREATE INDEX idx_municipios_uf ON municipios(uf); -- localiza rapidamente municípios de SP
 
 -- consulta COM índice
