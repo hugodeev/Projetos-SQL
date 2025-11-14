@@ -1,28 +1,26 @@
-
-
 -- Criar tabela principal com as colunas do csv
 CREATE TABLE bolsa_familia_pagamentos (
-    mes_competencia VARCHAR(10),
-    mes_referencia VARCHAR(10),
-    uf VARCHAR(2),
+    mes_competencia VARCHAR(500),
+    mes_referencia VARCHAR(500),
+    uf VARCHAR(100),
     codigo_municipio VARCHAR(15),
     nome_municipio VARCHAR(100),
-    cpf_favorecido VARCHAR(14),
-    nis_beneficiario VARCHAR(11),
+    cpf_favorecido VARCHAR(100),
+    nis_beneficiario VARCHAR(100),
     nome_beneficiario VARCHAR(100),
     valor_parcela VARCHAR(50)
 );
 
 -- Importar dados do arquivo CSV completo
-COPY bolsa_familia_pagamentos
-FROM '/tmp/arquivoComNovaCodificacao.csv'
-USING DELIMITERS ';' CSV HEADER;
+COPY bolsa_familia_pagamentos FROM '/tmp/BolsaFamilia_Pagamentos.csv' WITH (
+    FORMAT csv, HEADER,DELIMITER ';',   ENCODING 'LATIN1'
+);
 
 -- Criar tabela de municípios (apenas com dados únicos)
 CREATE TABLE municipios (
-    codigo_municipio VARCHAR(15) PRIMARY KEY,
+    codigo_municipio VARCHAR(20) PRIMARY KEY,
     nome_municipio VARCHAR(100),
-    uf VARCHAR(2)
+    uf VARCHAR(10)
 );
 
 -- popular tabela de municípios a partir dos dados importados
@@ -70,8 +68,3 @@ JOIN municipios m ON b.codigo_municipio = m.codigo_municipio
 GROUP BY m.nome_municipio, m.uf
 ORDER BY valor_total DESC
 LIMIT 10;
-
-
-
-
-
