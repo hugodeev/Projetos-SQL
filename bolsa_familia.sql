@@ -60,7 +60,7 @@ JOIN municipios m ON b.codigo_municipio = m.codigo_municipio
 WHERE m.uf = 'SP'
 GROUP BY b.nome_beneficiario, b.nis_beneficiario, m.nome_municipio, m.uf;
 
--- consulta: Top municípios por valor total 
+-- consulta: Top municípios por valor total
 EXPLAIN ANALYSE
 SELECT m.nome_municipio, m.uf,
 COUNT(*) as total_pagamentos,
@@ -70,6 +70,7 @@ JOIN municipios m ON b.codigo_municipio = m.codigo_municipio
 GROUP BY m.nome_municipio, m.uf
 ORDER BY valor_total DESC
 LIMIT 10;
+
 
 
 
